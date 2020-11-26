@@ -141,4 +141,5 @@ cython_debug/
 .idea
 out
 
-.media
+media
+secrets.py
