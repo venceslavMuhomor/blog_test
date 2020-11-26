@@ -8,7 +8,7 @@ def home(request):
     categories = Category.objects.all
     form = PostForm
     try:
-        last_post = list(Post.objects.all())[-1]
+        last_post = Post.objects.last()
         context = {
             'posts': posts,
             'last_post': last_post,
@@ -53,5 +53,4 @@ def add_comment(request, slug):
         comment.text = request.POST.get('text')
         comment.author = request.user
         comment.save()
-    return redirect('post_detail', slug = slug)
-
+    return redirect('post_detail', slug=slug)

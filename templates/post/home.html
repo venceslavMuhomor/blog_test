@@ -13,7 +13,7 @@
             <p>дата публикации: {{last_post.created_date}}</p>
             <figure class="article-image">
                 {% if last_post.image %}
-                <img src="{{last_post.image.url}}" id="img">
+                <img src="{{last_post.image.url}}" id="img" width="300">
                 {% endif %}
             </figure>
             <p>автор: {{last_post.author}}</p>
