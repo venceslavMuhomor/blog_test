@@ -18,6 +18,7 @@ My blog look like piece of shit beacause i really hate fucking with html+css, i'
 
 *pytils==0.3
 
+*django-environ==0.4.5
 
 <h1>Installation</h1>
 
@@ -25,7 +26,12 @@ My blog look like piece of shit beacause i really hate fucking with html+css, i'
 2. python3 -m venv myvenv
 3. cd myvenv
 4. pip install -r requirements.txt 
+5. create .env file in base directory
 5. python manage.py createsuperuser 
 6. python manage.py makemigrations 
 7. python manage.py migrate 
 8. python manage.py run server and then go to http://localhost:8000/
+
+<h1>.env file example</h1>
+DEBUG = on
+SECRET_KEY = your_secret_key
