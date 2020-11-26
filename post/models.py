@@ -41,7 +41,7 @@ class Post(models.Model):
     )
     image = models.ImageField('Главная фотография', upload_to='post/', null=True, blank=True)
     category = models.ForeignKey(Category, null=True, on_delete=models.PROTECT, verbose_name='Категория', blank=True)
-    template = models.CharField('Шаблон', max_length=500, default='blog/post_detail.html')
+    template = models.CharField('Шаблон', max_length=256, default='blog/post_detail.html')
     published = models.BooleanField('Опубликовать?', default=True)
     viewed = models.PositiveIntegerField('Просмотрено', default=0)
     rating = models.IntegerField('Рейтинг', default=0)
@@ -75,7 +75,6 @@ class Comment(models.Model):
         ordering = ('created_date',)
         verbose_name = 'Комментарий'
         verbose_name_plural = 'Комментарии'
-
 
     def __str__(self):
         return 'Комментарий от {} к посту {}'.format(self.author, self.post)
