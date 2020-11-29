@@ -1,6 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from rest_framework.response import Response
 from .forms import PostForm, CommentForm
 from .models import Post, Category, Comment
+from rest_framework.views import APIView
+from .serializer import PostSerializer
 
 
 def home(request):
@@ -54,3 +57,18 @@ def add_comment(request, slug):
         comment.author = request.user
         comment.save()
     return redirect('post_detail', slug=slug)
+
+
+class PostApiView(APIView):
+    def get(self, request):
+        posts = Post.objects.all()
+        serializer = PostSerializer(posts, many=True)
+        return Response({"posts": serializer.data})
+
+    def post(self, request):
+        post = request.data.get("post")
+        serializer = PostSerializer(data=post)
+        if serializer.is_valid(raise_exception=True):
+            post_save = serializer.save()
+        return Response({"success": "Post '{}' created successfully".format(post_save.title)})
+

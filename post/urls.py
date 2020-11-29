@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.urls import path
-from .views import home, add_post, post_detail, add_comment
+from .views import home, add_post, post_detail, add_comment, PostApiView
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -22,6 +22,7 @@ urlpatterns = [
     path('', home, name='home'),
     path('add_post', add_post, name='add_post'),
     path('post_detail/<slug:slug>', post_detail, name='post_detail'),
-    path('add_comment/<slug:slug>', add_comment, name='add_comment')
+    path('add_comment/<slug:slug>', add_comment, name='add_comment'),
+    path('api/get_posts', PostApiView.as_view(), name='post_api')
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
